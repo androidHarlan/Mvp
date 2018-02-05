@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.lhc.harlan.mvp"
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+final RETROFIT_VERSION = '2.3.0'
+final Dagger2_Version = "2.4"
+final STETHO_VERSION = "1.5.0"
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:support-v4:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
+    compile "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_VERSION}"
+    // 调试网络
+    compile "com.facebook.stetho:stetho:${STETHO_VERSION}"
+    compile "com.facebook.stetho:stetho-okhttp3:${STETHO_VERSION}"
+
+    compile 'com.google.dagger:dagger:2.0.2'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0.2'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
+
+    
+    compile 'com.trello:rxlifecycle:0.5.0'
+    compile 'com.trello:rxlifecycle-components:0.5.0'
+    compile 'me.yokeyword:fragmentation:0.7.9'
+
+}
