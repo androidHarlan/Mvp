@@ -7,6 +7,7 @@ import com.lhc.harlan.mvp.NetworkApi;
 import com.lhc.harlan.mvp.base.BaseRxPresenter;
 import com.lhc.harlan.mvp.bean.Test1;
 
+import com.lhc.harlan.mvp.http.HttpResultFuncT;
 import com.lhc.harlan.mvp.http.ProgressSubscriber;
 import com.lhc.harlan.mvp.http.RetrofitManager;
 import com.lhc.harlan.mvp.http.SubscriberOnNextListenter;
@@ -37,7 +38,7 @@ public class TestPresenterImpl extends BaseRxPresenter<TestView.View> implements
     public void httpDate() {
         Observable observable = RetrofitManager.getInstace()
                 .create(NetworkApi.class).getCode()
-                .map(new HttpResultFunc1<String>());
+                .map(new HttpResultFuncT<String>());
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnNextListenter<String>() {
 
             public void next(String o) {
@@ -53,13 +54,13 @@ public class TestPresenterImpl extends BaseRxPresenter<TestView.View> implements
         RetrofitManager.getInstace().toSubscribe(observable, (Subscriber) rxSubscription);
         addSubscrebe(rxSubscription);
     }
-    class HttpResultFunc1<String> implements Func1<java.lang.String, java.lang.String>{
+    /*class HttpResultFunc1<T> implements Func1<T, T>{
 
 
         @Override
-        public java.lang.String call(java.lang.String httpResult) {
+        public T call(T httpResult) {
 
             return httpResult;
         }
-    }
+    }*/
 }
